@@ -1,0 +1,9 @@
+/* pages/putOut/putOut.wxss */
+
+.checkbox{
+	display: inline-flex;
+  margin-right: 20rpx;
+}
+form{
+  width: 100%;
+}

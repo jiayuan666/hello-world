@@ -1,6 +1,7 @@
 //index.js 
 const app = getApp()
 
+// pages/index/index.js 
 Page({
 	data: {
 		avatarUrl: './user-unlogin.png',
@@ -116,46 +117,5 @@ Page({
 			}
 		})
 	},
-	onPutOut: function () {
-		wx.navigateTo({
-			url: '../putOut/putOut',
-		})
-	},
 
-	showInput: function () {
-		this.setData({
-			inputShowed: true
-		});
-		console.log("showInput");
-	},
-	hideInput: function () {
-		this.setData({
-			inputValue: "",
-			inputVal: "",
-			showLoadMore: false,
-			inputShowed: false
-		});
-	},
-	clearInput: function () {
-		this.setData({
-			inputValue: "",
-			inputVal: "",
-			showLoadMore: false,
-			hospitalList: []
-		});
-		console.log("clearInput");
-	},
-	inputTyping: function (e) {
-		this.setData({
-			inputVal: e.detail.value,
-			page: 1,
-		});
-		if (e.detail.value.length == 0) {
-			this.setData({
-				hospitalList: [],
-				showLoadMore: false,
-			});
-		}
-		console.log("inputTyping");
-	}
-}) 
+})

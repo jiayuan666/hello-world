@@ -1,0 +1,132 @@
+<view class="page">
+  <view class='page_bd'>
+    <form catchsubmit="formSubmit" catchreset="formReset" >
+      <view class="weui-cells__title">标题</view>
+      <!-- 标题框 -->
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <input class="weui-input" name="goodTitle" placeholder="标题 品类品牌型号都是买家喜欢搜索的" />
+          </view>
+        </view>
+      </view>
+
+      <view class="weui-cells__title">详细</view>
+      <!-- 详细框 -->
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+
+            <textarea class="weui-textarea" name="goodDetail" bindinput="onStrLengthChanging" maxlength="{{detailInputNumLimit}}" placeholder="描述一下宝贝的转手原因、入手渠道和使用感受" style='height: 2.7em;' />
+            <view class="weui-textarea-counter">{{detailInputNum}}/{{detailInputNumLimit}}</view>
+          </view>
+        </view>
+      </view>
+
+      <view class="weui-cells__title">图片</view>
+      <!-- 图片上传 -->
+      <view class="weui-cells" style='margin-top: 0em;'>
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+
+            <view class="weui-uploader">
+
+              <view class="weui-uploader__hd">
+                <view class="weui-uploader__title">添加图片</view>
+                <view class="weui-uploader__info">{{imgFiles.length}}/{{imgFilesMaxNum}}</view>
+              </view>
+
+              <view class="weui-uploader__bd">
+
+                <view class="weui-uploader__files" id="uploaderFiles">
+                  <block wx:for="{{imgFiles}}" wx:key="*this">
+                    <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
+                      <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                    </view>
+                  </block>
+
+                </view>
+
+                <view class="weui-uploader__input-box" wx:if="{{imgFiles.length < imgFilesMaxNum}}">
+                  <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                </view>
+              </view>
+
+            </view>
+
+          </view>
+        </view>
+      </view>
+
+      <!-- 表单 -->
+      <view class="weui-cells__title"></view>
+      <view class="weui-cells weui-cells_after-title">
+        <!-- 价格 -->
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">价格</view>
+          </view>
+          <view class="weui-cell__bd">
+            <input class="weui-input" name="goodPrice" type="digit" placeholder="输入价格" />
+          </view>
+
+          <view class="weui-cell__ft">￥</view>
+
+        </view>
+        <!-- 进货价 -->
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__hd">
+            <view class="weui-label">进货价</view>
+          </view>
+          <view class="weui-cell__bd">	
+            <input class="weui-input" name="goodExPrice" type="digit" placeholder="输入价格" />
+          </view>
+          <view class="weui-cell__ft">￥</view>
+        </view>
+        <!-- 选择分类 -->
+        <view class="weui-cell weui-cell_select	">
+
+          <view class="weui-cell__hd weui-cell__hd_in-select-after">
+            <view class="weui-label">分类</view>
+          </view>
+
+          <view class="weui-cell__bd">
+            <picker name="goodCategoryIndex" bindchange="bindCategoryChange" range="{{category}}">
+              <view class="weui-select">{{category[goodCategoryIndex]}}</view>
+            </picker>
+          </view>
+
+        </view>
+        <!-- 交易方式 -->
+        <view class="weui-cell">
+          <view class="weui-cell__hd">
+            <view class="weui-label" style="width: 85px;">交易方式</view>
+          </view>
+
+          <view class="weui-cell__bd">
+            <checkbox-group name="goodMOT" bindchange="checkboxChange">
+              <label class="checkbox">
+                <checkbox value="self" />自提
+              </label>
+              <label class="checkbox">
+                <checkbox value="meet" />校内面交
+              </label>
+              <label class="checkbox">
+                <checkbox value="post" />邮寄
+              </label>
+            </checkbox-group>
+          </view>
+        </view>
+
+      </view>
+
+      <view class="weui-cells__tips">底部说明文字底部说明文字</view>
+
+
+      <view class="weui-btn-area">
+        <button type="primary" formType="submit">发布</button>
+				<button formType="reset">重置</button>
+      </view>
+    </form>
+  </view>
+</view>
